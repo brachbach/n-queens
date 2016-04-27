@@ -138,18 +138,11 @@
 
 
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-    //establish the size
-    //set count to zero
-    //starting at (index,0)
-    //check if inbounds
-      //if so, add val to count
-    //iterate one space down and to the right
-    //iterate through size
-    //return count >1
       var size = this.get('n');
       var count = 0;
       var rowIndex = 0;
       var colIndex = majorDiagonalColumnIndexAtFirstRow;
+
       for (var i = 0; i < size; i++) {
         if (this._isInBounds(rowIndex, colIndex)) {
           var squareValue = this.get(rowIndex)[colIndex];
@@ -165,7 +158,7 @@
     hasAnyMajorDiagonalConflicts: function() {
 
       var size = this.get('n');
-      for (var i = -size + 1; i < size; i++) {
+      for (var i = -size + 2; i < size - 1; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
         }
@@ -180,12 +173,32 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      debugger;
+      var size = this.get('n');
+      var count = 0;
+      var rowIndex = 0;
+      var colIndex = minorDiagonalColumnIndexAtFirstRow;
+      
+      for (var i = 0; i < size; i++) {
+        if (this._isInBounds(rowIndex, colIndex)) {
+          var squareValue = this.get(rowIndex)[colIndex];
+          count += squareValue;
+        }
+        rowIndex++;
+        colIndex--;
+      }
+      return count > 1; 
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      var size = this.get('n');
+      for (var i = 2; i < size + 2; i++) {
+        if (this.hasMinorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      return false; 
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
