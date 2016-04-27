@@ -173,7 +173,6 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      debugger;
       var size = this.get('n');
       var count = 0;
       var rowIndex = 0;
