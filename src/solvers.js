@@ -59,11 +59,9 @@ window.countNRooksSolutions = function(n) {
     }
     for (var i = 0; i < n; i++) {
       for (var j = 0; j < n; j++) {
-        var newBoardMatrix = board.rows().slice(0);
-        var newBoard = new Board(newBoardMatrix);
-        newBoard.togglePiece(i, j);
-        console.log(newBoard.rows());       
-        findSolutions(newBoard, rooksToPlace - 1);
+        board.togglePiece(i, j);
+        //console.log(newBoard.rows());       
+        findSolutions(board, rooksToPlace - 1);
       }
     }
   };
